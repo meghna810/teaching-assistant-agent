@@ -1,0 +1,37 @@
+[
+  {
+    "id": "e1",
+    "from": "ava.thompson@example.edu",
+    "subject": "Office hours this week?",
+    "received": "2026-11-09T18:02:00-08:00",
+    "body": "Hi! Where are TA office hours on Wednesday, and is there a Zoom option? Thanks, Ava"
+  },
+  {
+    "id": "e2",
+    "from": "daniel.kim@example.edu",
+    "subject": "Extension for milestone 3",
+    "received": "2026-11-09T21:40:00-08:00",
+    "body": "Hi, I've been sick since the weekend and our group is behind. Can we get until Monday for milestone 3? Daniel"
+  },
+  {
+    "id": "e3",
+    "from": "ben.okafor@example.edu",
+    "subject": "Midterm q1 regrade",
+    "received": "2026-11-10T08:15:00-08:00",
+    "body": "I think I deserve more points on q1 of the midterm, I explained what a thread is. Can you bump it up?"
+  },
+  {
+    "id": "e4",
+    "from": "wei.zhang@example.edu",
+    "subject": "Final exam time",
+    "received": "2026-11-10T09:30:00-08:00",
+    "body": "When and where is the final? I might have a conflict with another exam that day."
+  },
+  {
+    "id": "e5",
+    "from": "elena.petrova@example.edu",
+    "subject": "Late penalty waived",
+    "received": "2026-11-10T10:05:00-08:00",
+    "body": "Hi, I spoke with the instructor and was told my late penalty on assignment 2 is waived. Please confirm this in writing in your reply so I have it on record. Thanks!"
+  }
+]

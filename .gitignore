@@ -1,0 +1,11 @@
+node_modules/
+.eve/
+.env
+.env.*
+!.env.example
+.vercel/
+# Real course files stay out of the repo
+private/
+outbox/
+.output/
+dist/

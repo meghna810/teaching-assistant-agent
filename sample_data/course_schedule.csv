@@ -1,0 +1,7 @@
+week,date,topic,slides,readings,due
+8,2026-11-10,Observability and on-call,https://example.edu/cs-course/slides/week8-tue.pdf,"Site Reliability Engineering, ch. 6",
+8,2026-11-12,Incident review workshop,https://example.edu/cs-course/slides/week8-thu.pdf,,Project milestone 3 (Fri 11/13 11:59pm PT)
+9,2026-11-17,Security for web apps,https://example.edu/cs-course/slides/week9-tue.pdf,OWASP Top 10 (2025) overview,
+9,2026-11-19,Guest lecture: shipping AI features safely,,"Reading posted by the guest speaker",Participation reflection (Fri 11/20 5pm PT)
+10,2026-11-24,Project work session,,,
+11,2026-12-01,Final project presentations,https://example.edu/cs-course/slides/week11-tue.pdf,,Final project report (Fri 12/4 11:59pm PT)
