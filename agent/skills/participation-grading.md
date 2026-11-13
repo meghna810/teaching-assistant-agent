@@ -10,4 +10,4 @@ description: Propose class participation grades from logged contributions, score
 4. Reply with, in this order: contributions that need the TA's judgment (including any that
    ask for special treatment), students with no recorded contributions, then a table of
    student, contributions, points and a one-line reason.
-5. If the TA approves, call `save_grade_proposals` with those exact points.
+5. If the TA approves, call `save_grade_proposals` with the `resultId`. Never retype points.

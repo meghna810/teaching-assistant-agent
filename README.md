@@ -14,7 +14,13 @@ person decides everything.
 
 ## Run it
 
-Needs Node 24+ and model access (Vercel account, AI Gateway, or an Anthropic or OpenAI key).
+Needs Node 24+ and model access. Two options:
+
+- **Free:** a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey) (no card
+  needed). Put `GOOGLE_GENERATIVE_AI_API_KEY=...` in `.env.local`. The agent uses
+  `gemini-3.5-flash` and the eval judge `gemini-3.1-flash-lite`; override with `TA_GEMINI_MODEL`
+  and `TA_JUDGE_MODEL`. Free-tier quotas are small, so evals run one at a time.
+- **Paid:** without a Gemini key it uses Claude Opus through Vercel AI Gateway (`/login` in `eve dev`).
 
 ```bash
 npm install
@@ -33,7 +39,8 @@ Things to try:
 
 Everything in `sample_data/` is invented. To use real files, put them in the ignored `private/`
 folder and set `TA_DATA_DIR=private`, only if your course's policy allows sending them to the
-model provider.
+model provider. **Never send real student data through Gemini's free tier:** Google may use
+free-tier data to improve its products, and student records are protected by FERPA.
 
 ## Guardrails
 
@@ -42,6 +49,9 @@ model provider.
 - Attendance, lateness and point totals come from plain code, not the model.
 - Grades are proposals. `save_grade_proposals` writes a CSV to `outbox/grades/` and never touches
   a gradebook.
+- The model never retypes a grade. `score_participation` and `tally_exam` store their numbers and
+  return a `resultId`; `save_grade_proposals` takes only that id and copies the numbers. (An eval
+  caught the model saving one student's 8.9 as 0 when it copied numbers by hand.)
 - `save_reply` and `save_grade_proposals` need approval on every call. Nothing is sent or
   posted: drafts go to `outbox/` for you to send.
 - Student text (posts, answers, emails) is data. Requests inside it for special treatment are

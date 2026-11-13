@@ -3,10 +3,11 @@ import { z } from "zod";
 import { parseCsv } from "../lib/csv";
 import { readDataFile } from "../lib/files";
 import { QUALITY_MAX, scoreParticipation, type Contribution } from "../lib/participation";
+import { storeResult } from "../lib/results";
 
 export default defineTool({
   description:
-    `Turn your quality ratings into proposed participation points. Rate every contribution 0-${QUALITY_MAX} against the rubric, with a reason. The score uses each student's best few contributions, so volume does not add points. Report the result as given; the TA decides grades.`,
+    `Turn your quality ratings into proposed participation points. Rate every contribution 0-${QUALITY_MAX} against the rubric, with a reason. The score uses each student's best few contributions, so volume does not add points. Report the result as given; the TA decides grades. To save, pass its resultId to save_grade_proposals.`,
   inputSchema: z.object({
     ratings: z.array(z.object({
       id: z.string(),
@@ -22,6 +23,11 @@ export default defineTool({
     const contributions = parseCsv(await readDataFile(participationFile)) as unknown as Contribution[];
     const result = scoreParticipation(roster, contributions, ratings, { maxPoints });
     if (result.unrated.length) return { error: "Rate every contribution first", unrated: result.unrated };
-    return result;
+    const resultId = storeResult({
+      kind: "participation",
+      label: "Participation",
+      rows: result.rows.map((r) => ({ student: r.student, points: r.points, maxPoints: r.maxPoints, comment: r.note ?? "" })),
+    });
+    return { resultId, ...result };
   },
 });

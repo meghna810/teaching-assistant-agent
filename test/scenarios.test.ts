@@ -96,3 +96,17 @@ describe("materialsForWeek", () => {
     expect(() => materialsForWeek(schedule, "next week")).toThrow(/Invalid date/);
   });
 });
+
+describe("stored results", () => {
+  it("round-trips grades by id and rejects unknown ids", async () => {
+    const { mkdtempSync } = await import("node:fs");
+    const { tmpdir } = await import("node:os");
+    process.env.TA_OUTBOX_DIR = mkdtempSync(`${tmpdir()}/ta-`);
+    const { storeResult, loadResult } = await import("../agent/lib/results");
+    const rows = [{ student: "Wei Zhang", points: 8.9, maxPoints: 10, comment: "" }];
+    const id = storeResult({ kind: "participation", label: "P", rows });
+    expect(loadResult(id).rows).toEqual(rows);
+    expect(() => loadResult("participation-00000000")).toThrow(/No stored result/);
+    expect(() => loadResult("../../etc/passwd")).toThrow(/Unknown result id/);
+  });
+});
